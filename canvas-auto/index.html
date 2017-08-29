@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<canvas id="cas"></canvas>
+<script>
+    var c = document.getElementById("cas");
+    var ctx = c.getContext("2d");
+    c.width = window.innerWidth;
+    c.height = window.innerHeight;
+    var arr = new Array();
+    var arr1 = new Array();
+
+    window.onload = function () {
+        var time = 0;
+        var timer = setInterval(function () {
+            time += 1;
+            if (time === 4) {
+                clearInterval(timer)
+            }
+            var r = Math.floor(Math.random() * 10 + 5);
+            var rgbaR = Math.floor(Math.random() * 256);
+            var rgbaG = Math.floor(Math.random() * 256);
+            var rgbaB = Math.floor(Math.random() * 256);
+            var x = Math.floor(Math.random() * c.width) > c.width ? c.width - r : Math.floor(Math.random() * c.width);
+            var y = Math.floor(Math.random() * c.height) > c.height ? c.height - r : Math.floor(Math.random() * c.height);
+            console.log("rgb" + "(" + rgbaR + "," + rgbaG + "," + rgbaB + ")");
+
+            ctx.beginPath();
+            ctx.arc(x, y, r, 0, 2 * Math.PI);
+            ctx.fillStyle = "rgb" + "(" + rgbaR + "," + rgbaG + "," + rgbaB + ")";
+            ctx.fill();
+            ctx.strokeStyle = 'transparent';
+            ctx.stroke();
+            ctx.closePath();
+
+            arr.push(x, y)
+            console.log(arr)
+            Array.prototype.push.apply(arr1, arr);
+            console.log(arr1)
+            console.log(time * 2 - 4)
+            console.log((time * 2) - 3)
+            console.log(time * 2 - 2)
+            console.log((time * 2) - 1)
+
+            ctx.beginPath();
+            ctx.moveTo(arr[0], arr[1]);
+            ctx.lineTo(arr1[(time * 2) - 4], arr1[(time * 2) - 3]);
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = 'red';
+            ctx.stroke();
+            arr.splice(0, arr.length);
+
+            ctx.beginPath();
+            ctx.moveTo(arr1[0], arr1[1]);
+            ctx.lineTo(arr1[(time * 2) - 2], arr1[(time * 2) - 1]);
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = 'red';
+            ctx.stroke();
+            arr.splice(0, arr.length);
+
+            ctx.beginPath();
+            ctx.moveTo(arr1[2], arr1[3]);
+            ctx.lineTo(arr1[(time * 2) - 2], arr1[(time * 2) - 1]);
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = 'red';
+            ctx.stroke();
+            arr.splice(0, arr.length);
+
+
+            ctx.beginPath();
+            ctx.moveTo(arr1[4], arr1[5]);
+            ctx.lineTo(arr1[(time * 2) - 2], arr1[(time * 2) - 1]);
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = 'red';
+            ctx.stroke();
+            arr.splice(0, arr.length);
+
+
+            setInterval(function () {
+                
+            })
+        }, 3000)
+
+    }
+
+</script>
+</body>
+</html>
