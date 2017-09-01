@@ -1,5 +1,5 @@
 let write = document.querySelector(".write"),
-    str = "Hello",
+    str = "Hello World",
     timer = null;
 
 let log = console.log.bind(console)
@@ -15,9 +15,9 @@ function typing() {
 
         if (i > str.length - 1) {
             clearInterval(timer)
-            deleting()
+            setTimeout(deleting,2000)
         }
-    }, 500)
+    }, 100)
 }
 
 function deleting() {
@@ -31,9 +31,9 @@ function deleting() {
 
         if (j <= 0) {
             clearInterval(timer)
-            typing()
+            setTimeout(typing,2000)
         }
-    }, 500)
+    }, 100)
 }
 
 typing()
