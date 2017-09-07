@@ -1,3 +1,3 @@
 ## kawhi's blog
 
-All of my repository
+All of my repositories
