@@ -1,1 +1,0 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="load.aspx.cs" Inherits="project_services_load" EnableTheming="false" ValidateRequest="false" %>
