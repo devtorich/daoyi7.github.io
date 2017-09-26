@@ -1,0 +1,111 @@
+﻿<div id="twin_tabs" class="mini-tabs" activeIndex="0" style="border:0;width:100%;height:100%;" bodyStyle="padding:0;">
+    <div name="base" title="常规" bodyStyle="padding:5px;">
+        <table style="font-size:12px;">
+            <tr>
+                <td style="width:80px;">任务名称：</td>
+                <td style="width:220px;"><input id="twin_name" class="mini-textbox" /></td>
+                <td style="width:80px;">负责人：</td>
+                <td><input id="twin_principal" class="mini-combobox" valueField="UID" textField="Name" multiSelect="true" showCheckIcon="true" /></td>
+            </tr>
+            <tr>
+                <td>完成百分比：</td>
+                <td><input id="twin_percentcomplete" class="mini-spinner" minValue="0" maxValue="100" /></td>
+                <td>部门：</td>
+                <td><input id="twin_department" class="mini-combobox" valueField="UID" textField="Name" /></td>
+            </tr>
+            <tr>
+                <td>工期：</td>
+                <td><input id="twin_duration" class="mini-spinner" minValue="0" maxValue="10000" /></td>
+                <td>工时：</td>
+                <td><input id="twin_work" class="mini-spinner" minValue="0" maxValue="10000" /></td>
+            </tr>
+        </table>
+        <br />
+        <fieldset style="padding:0;width:auto;border:#92a5c7 1px solid">
+            <legend>日期</legend>
+            <div style="padding:5px;">
+                <span>开始日期：</span>
+                <input id="twin_start" class="mini-datepicker" />
+                <span style="margin-left:60px;">完成日期：</span>
+                <input id="twin_finish" class="mini-datepicker" />
+
+            </div>
+        </fieldset>
+        <br />
+        <fieldset id="fs_actualdate" style="padding:0;width:auto;border:#92a5c7 1px solid">
+            <legend>实际日期</legend>
+            <div style="padding:5px;">
+                <span>开始日期：</span>
+                <input id="twin_actualstart" class="mini-datepicker" />
+                <span style="margin-left:60px;">完成日期：</span>
+                <input id="twin_actualfinish" class="mini-datepicker" />
+
+            </div>
+        </fieldset>
+    </div>
+    <div name="pre" title="前置任务">
+        <div class="mini-panel" showHeader="false" showToolbar="true" style="width:100%;height:100%;" borderStyle="border:0" bodyStyle="padding:0;">
+            <div property="toolbar" id="twin_linkbar" class="mini-toolbar" style="border:0;">
+                <a id="twin_linkadd" class="mini-button">增加</a>
+                <a id="twin_linkdel" class="mini-button">删除</a>
+            </div>
+            <div id="twin_linkgrid" class="mini-datagrid" style="width:100%;height:100%;" borderStyle="border:0;"
+                allowCellEdit="true" allowCellSelect="true" showFooter="false"
+            >
+                <div property="columns">
+                    <div field="PredecessorID" editor="textbox">标识</div>
+                    <div field="PredecessorName" width="200">任务名称</div>
+                    <div field="Type" editor="{type: 'combobox', valueField: 'ID', textField: 'Name'}">类型</div>
+                    <div field="LinkLag" editor="{type: 'spinner', minValue: -1000, maxValue: 1000}">延隔时间</div>
+                </div>
+            </div>            
+        </div>
+    </div>
+    <div name="res" title="资源" >
+        <div class="mini-panel" showHeader="false" showToolbar="true" style="width:100%;height:100%;" borderStyle="border:0"  bodyStyle="padding:0;">
+            <div property="toolbar" id="twin_resbar" class="mini-toolbar" style="border:0;">
+                <a id="twin_resadd" class="mini-button">增加</a>
+                <a id="twin_resdel" class="mini-button">删除</a>
+            </div>
+            <div id="twin_resgrid" class="mini-datagrid" style="width:100%;height:100%;" borderStyle="border:0;"
+                allowCellEdit="true" allowCellSelect="true" showFooter="false"
+            >
+                <div property="columns">
+                    <div field="ResourceUID" width="200" editor="{type: 'combobox', valueField: 'UID', textField: 'Name'}">资源名称</div>
+                    <div field="Units" width="100" editor="{type: 'spinner', minValue: 0, maxValue: 100}">分配单位</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div name="adv" title="高级" bodyStyle="padding:5px;">
+        <fieldset style="padding:0;width:auto;border:#92a5c7 1px solid;">
+            <legend>任务限制</legend>
+            <div style="padding:5px;">
+                <div>
+                    <span>限制类型：</span>
+                    <input id="twin_constrainttype" class="mini-combobox" valueField="ID" textField="Name" />
+                    <span style="margin-left:70px;">限制日期：</span>
+                    <input id="twin_constraintdate" class="mini-datepicker" />
+                </div>
+                <div style="margin-top:8px;">
+                    <input id="twin_fixeddate" class="mini-checkbox" text="固定日期（限摘要任务）" disabled/>                       
+                </div>
+                <div style="margin-top:8px;">
+                <input id="twin_milestone" class="mini-checkbox" text="标记为里程碑"/>                       
+                </div>
+                <div style="margin-top:8px;">
+                    <input id="twin_critical2" class="mini-checkbox" text="标记为关键任务（手动）"/>                       
+                </div>
+                <div style="margin-top:8px;">
+                WBS：<input id="twin_wbs" class="mini-textbox" />
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div name="note" title="备注" bodyStyle="padding:5px;">
+        <div id="twin_notes" class="mini-textarea" style="width:100%;height:100%"></div>
+    </div>
+    <div name="diy" title="自定义Tab" bodyStyle="padding:5px;">
+        <input id="twin_date1" class="mini-datepicker" />
+    </div>
+</div>
