@@ -38,7 +38,6 @@
     c.addEventListener('touchstart', (e) => {
       e.preventDefault()
       d = true
-      alert(123)
 
       drawX = e.targetTouches[0].pageX - CclientRect.x
       drawY = e.targetTouches[0].pageY - CclientRect.y
@@ -54,7 +53,7 @@
 
     c.addEventListener('touchmove', (e) => {
       if(d) {
-        log(drawX)
+        alert(123)
         ctx.lineTo(e.targetTouches[0].pageX - CclientRect.x, e.targetTouches[0].pageY - CclientRect.y)
         ctx.stroke()
       }
