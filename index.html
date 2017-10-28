@@ -41,8 +41,8 @@
     // }
 
     c.addEventListener('touchstart', (e) => {
+      e.preventDefault()
       d = true
-      log(e)
 
       drawX = e.targetTouches[0].pageX - CclientRect.x
       drawY = e.targetTouches[0].pageY - CclientRect.y
