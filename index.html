@@ -35,16 +35,10 @@
     let drawX                                       // 初始画鼠标按下的起始点
     let drawY
 
-    // c.onmousedown = (e) => {
-    //   log(e.pageX)
-    // }
-    // c.onmousemove = (e) => {
-    //   log(e.pageX)
-    // }
-
     c.addEventListener('touchstart', (e) => {
       e.preventDefault()
       d = true
+      alert(123)
 
       drawX = e.targetTouches[0].pageX - CclientRect.x
       drawY = e.targetTouches[0].pageY - CclientRect.y
