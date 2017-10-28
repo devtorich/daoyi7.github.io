@@ -52,6 +52,7 @@
     })
 
     c.addEventListener('touchmove', (e) => {
+      e.preventDefault()
       if(d) {
         alert(123)
         ctx.lineTo(e.targetTouches[0].pageX - CclientRect.x, e.targetTouches[0].pageY - CclientRect.y)
