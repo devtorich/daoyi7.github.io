@@ -1,384 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <title>hello world</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-        }
+  <meta charset="utf-8">
+  <title>canvas</title>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+      text-align: center;
+    }
 
-        .main {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    </style>
+    canvas {
+      border: 1px solid #000;
+    }
+  </style>
 </head>
+
 <body>
-    <div class="main">
-        <canvas id="cavas" width="800" height="600"></canvas>
-    </div>
+  <canvas id="canvas" width="800" height="600"></canvas>
 
-<script type="text/javascript">
-    let main = document.querySelector(".main");
-    let winW = window.innerWidth,
-        winH = window.innerHeight;
+  <script>
+    const log = console.log.bind(console)
+    const c = document.querySelector("#canvas")      // 获取canvas
+    const CclientRect = c.getBoundingClientRect()    // 获取canvas的各种坐标值
+    let ctx = c.getContext("2d")                    // 实例化一个2dcanvas
+    c.width = 800                                   // 设置宽高
+    c.height = 600
 
-    let log = console.log.bind(console)
+    let d = false                                   // 初始化鼠标按下事件 初始时为false
+    let drawX                                       // 初始画鼠标按下的起始点
+    let drawY
 
-    const setOff = (obj) => {
-        let winW = window.innerWidth,
-            winH = window.innerHeight;
+    // c.onmousedown = (e) => {
+    //   log(e.pageX)
+    // }
+    // c.onmousemove = (e) => {
+    //   log(e.pageX)
+    // }
 
-        obj.style.width = winW + 'px';
-        obj.style.height = winH + 'px';
+    c.addEventListener('touchstart', (e) => {
+      d = true
+      log(e)
+
+      drawX = e.targetTouches[0].pageX - CclientRect.x
+      drawY = e.targetTouches[0].pageY - CclientRect.y
+
+      ctx.beginPath()
+      ctx.moveTo(drawX, drawY)
+    })
+
+    c.addEventListener('touchend', (e) => {
+      d = false
+      ctx.closePath()
+    })
+
+    c.addEventListener('touchmove', (e) => {
+      if(d) {
+        log(drawX)
+        ctx.lineTo(e.targetTouches[0].pageX - CclientRect.x, e.targetTouches[0].pageY - CclientRect.y)
+        ctx.stroke()
+      }
+    })
+
+    c.onmousedown = (e) => {
+      d = true
+
+      drawX = e.pageX - CclientRect.x
+      drawY = e.pageY - CclientRect.y
+
+      ctx.beginPath()
+      ctx.moveTo(drawX, drawY)
     }
 
-    setOff(main);
-
-    window.onresize = function () {
-        let winW = window.innerWidth,
-            winH = window.innerHeight;
-
-        main.style.width = winW + 'px';
-        main.style.height = winH + 'px';
+    c.onmouseup = (e) => {
+      d = false
+      ctx.closePath()
     }
 
-    let c = document.getElementById("cavas");
-    let ctx = c.getContext("2d");
-    let WIDTH = c.width = '1400';
-    let HEIGHT = c.height = '600';
-
-    let gridW = gridH = 20
-    let rows = parseInt(HEIGHT/gridH)
-    let cols = parseInt(WIDTH/gridW)
-    let bgColor = "#f4645f"
-    let lineColor = "transparent"
-
-
-    const drawBG = () => {
-        for(let i=0; i<cols; ++i) {
-            for(let j=0; j<rows; j++) {
-                ctx.beginPath()
-                ctx.rect(i*gridW, j*gridH, gridW, gridH)
-                ctx.strokeStyle = "transparent"
-                ctx.stroke()
-                ctx.closePath()
-            }
-        }
+    c.onmousemove = (e) => {
+      if(d) {
+        log(drawX)
+        ctx.lineTo(e.pageX - CclientRect.x, e.pageY - CclientRect.y)
+        ctx.stroke()
+      }
     }
-
-    drawBG()
-
-
-    const drawHELLOWORLD = () => {
-        for(let i=0; i<9; i++) {
-            ctx.beginPath()
-            // H
-            ctx.rect(gridW*1.5, gridH*(8+i), gridW, gridH)
-            // E
-            ctx.rect(gridW*6.5, gridH*(8+i), gridW, gridH)
-            ctx.rect(gridW*8.5, gridH*(8+i), gridW, gridH)
-            // L
-            ctx.rect(gridW*14.5, gridH*(8+i), gridW, gridH)
-            // L
-            ctx.rect(gridW*20.5, gridH*(8+i), gridW, gridH)
-            // O
-            ctx.rect(gridW*26.5, gridH*(8+i), gridW, gridH)
-            ctx.rect(gridW*31.5, gridH*(8+i), gridW, gridH)
-            // W
-            ctx.rect(gridW*(33.5+(0.15*i)), gridH*(8+i), gridW, gridH)
-            ctx.rect(gridW*(37.5+(0.15*i)), gridH*(8+i), gridW, gridH)
-            ctx.rect(gridW*(35.5+(0.15*i)), gridH*(16-i), gridW, gridH)
-            ctx.rect(gridW*(39.5+(0.15*i)), gridH*(16-i), gridW, gridH)
-            // O
-            ctx.rect(gridW*42.5, gridH*(8+i), gridW, gridH)
-            ctx.rect(gridW*47.5, gridH*(8+i), gridW, gridH)
-            // R
-            ctx.rect(gridW*49.5, gridH*(8+i), gridW, gridH)
-            // L
-            ctx.rect(gridW*56.5, gridH*(8+i), gridW, gridH)
-            // D
-            ctx.rect(gridW*62.5, gridH*(8+i), gridW, gridH)
-            ctx.rect(gridW*67.5, gridH*(8+i), gridW, gridH)
-            ctx.fillStyle = bgColor
-            ctx.fill()
-            ctx.strokeStyle= lineColor
-            ctx.stroke()
-            ctx.closePath()
-        }
-        for(let i=0; i<4; i++) {
-            ctx.beginPath()
-            // H
-            ctx.rect(gridW*(2.5+i), gridH*12, gridW, gridH)
-            // E
-            ctx.rect(gridW*(9.5+i), gridH*8, gridW, gridH)
-            ctx.rect(gridW*(9.5+i), gridH*12, gridW, gridH)
-            ctx.rect(gridW*(9.5+i), gridH*16, gridW, gridH)
-            // L
-            ctx.rect(gridW*(15.5+i), gridH*16, gridW, gridH)
-            // L
-            ctx.rect(gridW*(21.5+i), gridH*16, gridW, gridH)
-            // O
-            ctx.rect(gridW*(27.5+i), gridH*8, gridW, gridH)
-            ctx.rect(gridW*(27.5+i), gridH*16, gridW, gridH)
-            // O
-            ctx.rect(gridW*(43.5+i), gridH*8, gridW, gridH)
-            ctx.rect(gridW*(43.5+i), gridH*16, gridW, gridH)
-            // R
-            ctx.rect(gridW*(50.5+(1.2*i)), gridH*(13+i), gridW, gridH)
-            ctx.rect(gridW*(51+(1.2*i)), gridH*(13+i), gridW, gridH)
-            // L
-            ctx.rect(gridW*(57.5+i), gridH*16, gridW, gridH)
-            // D
-            ctx.rect(gridW*(63.5+i), gridH*8, gridW, gridH)
-            ctx.rect(gridW*(63.5+i), gridH*16, gridW, gridH)
-            ctx.fillStyle = bgColor
-            ctx.fill()
-            ctx.strokeStyle= lineColor
-            ctx.stroke()
-            ctx.closePath()
-        }
-        for(let i=0; i<5; i++) {
-            ctx.beginPath()
-            // R
-            ctx.rect(gridW*54.5, gridH*(8+i), gridW, gridH)
-            ctx.rect(gridW*(50.5+i), gridH*8, gridW, gridH)
-            ctx.rect(gridW*(50.5+i), gridH*12, gridW, gridH)
-            ctx.fillStyle = bgColor
-            ctx.fill()
-            ctx.strokeStyle= lineColor
-            ctx.stroke()
-            ctx.closePath()
-        }
-    }
-
-    // const drawGrid_E = () => {
-    //     for(let i=0; i<9; i++) {
-    //         ctx.beginPath()
-    //         ctx.rect(gridW*8.5, gridH*(8+i), gridW, gridH)
-    //         ctx.fillStyle = bgColor
-    //         ctx.fill()
-    //         ctx.strokeStyle= lineColor
-    //         ctx.stroke()
-    //         ctx.closePath()
-    //     }
-    //     for(let i=0; i<4; i++) {
-    //         ctx.beginPath()
-    //         ctx.rect(gridW*(9.5+i), gridH*8, gridW, gridH)
-    //         ctx.rect(gridW*(9.5+i), gridH*12, gridW, gridH)
-    //         ctx.rect(gridW*(9.5+i), gridH*16, gridW, gridH)
-    //         ctx.fillStyle = bgColor
-    //         ctx.fill()
-    //         ctx.strokeStyle= lineColor
-    //         ctx.stroke()
-    //         ctx.closePath()
-    //     }
-    // }
-
-    // const drawGrid_L1 = () => {
-    //     for(let i=0; i<9; i++) {
-    //         ctx.beginPath()
-    //         ctx.rect(gridW*14.5, gridH*(8+i), gridW, gridH)
-    //         ctx.fillStyle = bgColor
-    //         ctx.fill()
-    //         ctx.strokeStyle= lineColor
-    //         ctx.stroke()
-    //         ctx.closePath()
-    //     }
-    //     for(let i=0; i<4; i++) {
-    //         ctx.beginPath()
-    //         ctx.rect(gridW*(15.5+i), gridH*16, gridW, gridH)
-    //         ctx.fillStyle = bgColor
-    //         ctx.fill()
-    //         ctx.strokeStyle= lineColor
-    //         ctx.stroke()
-    //         ctx.closePath()
-    //     }
-    // }
-
-    // const drawGrid_L2 = () => {
-    //     for(let i=0; i<9; i++) {
-    //         ctx.beginPath()
-    //         ctx.rect(gridW*20.5, gridH*(8+i), gridW, gridH)
-    //         ctx.fillStyle = bgColor
-    //         ctx.fill()
-    //         ctx.strokeStyle= lineColor
-    //         ctx.stroke()
-    //         ctx.closePath()
-    //     }
-    //     for(let i=0; i<4; i++) {
-    //         ctx.beginPath()
-    //         ctx.rect(gridW*(21.5+i), gridH*16, gridW, gridH)
-    //         ctx.fillStyle = bgColor
-    //         ctx.fill()
-    //         ctx.strokeStyle= lineColor
-    //         ctx.stroke()
-    //         ctx.closePath()
-    //     }
-    // }
-
-    // const drawGrid_O1 = () => {
-    //     for(let i=0; i<9; i++) {
-    //         ctx.beginPath()
-    //         ctx.rect(gridW*26.5, gridH*(8+i), gridW, gridH)
-    //         ctx.rect(gridW*31.5, gridH*(8+i), gridW, gridH)
-    //         ctx.fillStyle = bgColor
-    //         ctx.fill()
-    //         ctx.strokeStyle= lineColor
-    //         ctx.stroke()
-    //         ctx.closePath()
-    //     }
-    //     for(let i=0; i<5; i++) {
-    //         ctx.beginPath()
-    //         ctx.rect(gridW*(27.5+i), gridH*8, gridW, gridH)
-    //         ctx.rect(gridW*(27.5+i), gridH*16, gridW, gridH)
-    //         ctx.fillStyle = bgColor
-    //         ctx.fill()
-    //         ctx.strokeStyle= lineColor
-    //         ctx.stroke()
-    //         ctx.closePath()
-    //     }
-    // }
-
-    // const drawGrid_W = () => {
-    //     for(let i=0; i<9; i++) {
-    //         ctx.beginPath()
-    //         ctx.rect(gridW*(33.5+(0.15*i)), gridH*(8+i), gridW, gridH)
-    //         ctx.rect(gridW*(37.5+(0.15*i)), gridH*(8+i), gridW, gridH)
-    //         ctx.rect(gridW*(35.5+(0.15*i)), gridH*(16-i), gridW, gridH)
-    //         ctx.rect(gridW*(39.5+(0.15*i)), gridH*(16-i), gridW, gridH)
-    //         ctx.fillStyle = bgColor
-    //         ctx.fill()
-    //         ctx.strokeStyle= lineColor
-    //         ctx.stroke()
-    //         ctx.closePath()
-    //     }
-    //     for(let i=0; i<9; i++) {
-    //         ctx.beginPath()
-    //         ctx.rect(gridW*(35.5+(0.15*i)), gridH*(16-i), gridW, gridH)
-    //         ctx.rect(gridW*(39.5+(0.15*i)), gridH*(16-i), gridW, gridH)
-    //         ctx.fillStyle = bgColor
-    //         ctx.fill()
-    //         ctx.strokeStyle= lineColor
-    //         ctx.stroke()
-    //         ctx.closePath()
-    //     }
-    // }
-
-    // const drawGrid_O2 = () => {
-    //     for(let i=0; i<9; i++) {
-    //         ctx.beginPath()
-    //         ctx.rect(gridW*42.5, gridH*(8+i), gridW, gridH)
-    //         ctx.rect(gridW*47.5, gridH*(8+i), gridW, gridH)
-    //         ctx.fillStyle = bgColor
-    //         ctx.fill()
-    //         ctx.strokeStyle= lineColor
-    //         ctx.stroke()
-    //         ctx.closePath()
-    //     }
-    //     for(let i=0; i<5; i++) {
-    //         ctx.beginPath()
-    //         ctx.rect(gridW*(43.5+i), gridH*8, gridW, gridH)
-    //         ctx.rect(gridW*(43.5+i), gridH*16, gridW, gridH)
-    //         ctx.fillStyle = bgColor
-    //         ctx.fill()
-    //         ctx.strokeStyle= lineColor
-    //         ctx.stroke()
-    //         ctx.closePath()
-    //     }
-    // }
-
-    // const drawGrid_R = () => {
-    //     for(let i=0; i<9; i++) {
-    //         ctx.beginPath()
-    //         ctx.rect(gridW*49.5, gridH*(8+i), gridW, gridH)
-    //         ctx.fillStyle = bgColor
-    //         ctx.fill()
-    //         ctx.strokeStyle= lineColor
-    //         ctx.stroke()
-    //         ctx.closePath()
-    //     }
-    //     for(let i=0; i<5; i++) {
-    //         ctx.beginPath()
-    //         ctx.rect(gridW*54.5, gridH*(8+i), gridW, gridH)
-    //         ctx.rect(gridW*(50.5+i), gridH*8, gridW, gridH)
-    //         ctx.rect(gridW*(50.5+i), gridH*12, gridW, gridH)
-    //         ctx.fillStyle = bgColor
-    //         ctx.fill()
-    //         ctx.strokeStyle= lineColor
-    //         ctx.stroke()
-    //         ctx.closePath()
-    //     }
-    //     for(let i=0; i<4; i++) {
-    //         ctx.beginPath()
-    //         ctx.rect(gridW*(50.5+(1.2*i)), gridH*(13+i), gridW, gridH)
-    //         ctx.rect(gridW*(51+(1.2*i)), gridH*(13+i), gridW, gridH)
-    //         ctx.fillStyle = bgColor
-    //         ctx.fill()
-    //         ctx.strokeStyle= lineColor
-    //         ctx.stroke()
-    //         ctx.closePath()
-    //     }
-    // }
-
-    // const drawGrid_L3 = () => {
-    //     for(let i=0; i<9; i++) {
-    //         ctx.beginPath()
-    //         ctx.rect(gridW*56.5, gridH*(8+i), gridW, gridH)
-    //         ctx.fillStyle = bgColor
-    //         ctx.fill()
-    //         ctx.strokeStyle= lineColor
-    //         ctx.stroke()
-    //         ctx.closePath()
-    //     }
-    //     for(let i=0; i<4; i++) {
-    //         ctx.beginPath()
-    //         ctx.rect(gridW*(57.5+i), gridH*16, gridW, gridH)
-    //         ctx.fillStyle = bgColor
-    //         ctx.fill()
-    //         ctx.strokeStyle= lineColor
-    //         ctx.stroke()
-    //         ctx.closePath()
-    //     }
-    // }
-
-    // const drawGrid_D = () => {
-    //     for(let i=0; i<9; i++) {
-    //         ctx.beginPath()
-    //         ctx.rect(gridW*62.5, gridH*(8+i), gridW, gridH)
-    //         ctx.rect(gridW*67.5, gridH*(8+i), gridW, gridH)
-    //         ctx.fillStyle = bgColor
-    //         ctx.fill()
-    //         ctx.strokeStyle= lineColor
-    //         ctx.stroke()
-    //         ctx.closePath()
-    //     }
-    //     for(let i=0; i<5; i++) {
-    //         ctx.beginPath()
-    //         ctx.rect(gridW*(63.5+i), gridH*8, gridW, gridH)
-    //         ctx.rect(gridW*(63.5+i), gridH*16, gridW, gridH)
-    //         ctx.fillStyle = bgColor
-    //         ctx.fill()
-    //         ctx.strokeStyle= lineColor
-    //         ctx.stroke()
-    //         ctx.closePath()
-    //     }
-    // }
-
-    drawHELLOWORLD()
-    // drawGrid_E()
-    // drawGrid_L1()
-    // drawGrid_L2()
-    // drawGrid_O1()
-    // drawGrid_W()
-    // drawGrid_O2()
-    // drawGrid_R()
-    // drawGrid_L3()
-    // drawGrid_D()
-</script>
+  </script>
 </body>
+
 </html>
