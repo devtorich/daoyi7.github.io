@@ -64,6 +64,8 @@
 }
 
 .main .links {
+  max-width: 11rem;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
 }
