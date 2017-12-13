@@ -95,6 +95,11 @@
   color: #1f95d4;
 }
 
+.main .links a i.icon-resume {
+  color: #24292e;
+  font-size: 2.7rem;
+}
+
 .demos-wrap .demos {
   text-align: left;
 }
