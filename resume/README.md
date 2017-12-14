@@ -5,9 +5,19 @@
 - 手机： 13871959550
 - Email： CodingWell@gmail.com
 - 微信： daoyi7
-- 微信公众号： CodingWell
 
-## 工作时间
+## 个人信息
+- 张深涵
+- 大专/长春汽车职业学院
+- 工作年限：3年
+- 微信公众号：CodingWell
+- 技术博客：https://daoyi7.github.io/
+- Github: https://github.com/daoyi7
+- 期望职位：Web前端开发工程师
+- 期望薪资：税前12k~18k
+- 期望城市：杭州、上海、武汉
+
+## 工作经历
 
 ### 中交第二航务工程勘察设计院 技术开发部 （2017年6月 ~ 至今）
 
@@ -77,9 +87,12 @@ nuxt.js + express 写一个ssr社区网站。还在写……
 - 前端工具：SaSS/LeSS/Stylus/npm
 - 数据库相关：MtSQL
 
-## 感谢
+## 致谢
 
-感谢您抽出时间阅读我的简历，期待能有机会一起共事情。
+感谢您阅读到这里，希望能与您一起共事。
 - 手机： 13871959550
 - Email： CodingWell@gmail.com
 - 微信： daoyi7
+
+
+*简历更新于2017年12月，而我每天都在进步*
