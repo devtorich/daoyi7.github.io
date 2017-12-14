@@ -4,6 +4,7 @@
 }
 
 body {
+  position: relative;
   overflow: hidden;
 }
 
@@ -17,14 +18,16 @@ canvas#canvas {
 }
 
 .toolbox {
-  width: auto;
+  width: 4rem;
   height: 100%;
   margin-left: 15px;
 }
 
 .tool, .restart {
-  padding: .5rem .8rem;
-  background: #50bdf5;
+  width: 4rem;
+  height: 2rem;
+  line-height: 2rem;
+  background: #6fceff;
   color: #fff;
   text-align: center;
   border-radius: .3rem;
@@ -33,5 +36,39 @@ canvas#canvas {
 }
 
 .tool.active {
-  background: #1297db;
+  background: #00a9ff;
+}
+
+.notice {
+  overflow: hidden;
+}
+
+.notice li {
+  padding: .5rem 0;
+  line-height: 2rem;
+  border-top: 1px solid #f3f3f3;
+}
+
+.notice b {
+  padding: .2rem .4rem;
+  background: #ccc;
+  color: #ec8484;
+  border-radius: .1rem;
+}
+
+.note-box {
+  position: absolute;
+  z-index: 9;
+  width: auto;
+  height: auto;
+}
+
+.note-box textarea {
+  resize: none;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 700;
+  font-family: "微软雅黑"
 }
