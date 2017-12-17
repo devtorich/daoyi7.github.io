@@ -11,13 +11,11 @@
 }
 
 .all {
+  position: relative;
   width: 100vw;
   height: 100vh;
-  background: url(../img/bcg.png);
+  background: url(../img/bcg-1.jpg);
   background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .filter {
@@ -29,6 +27,15 @@
   background: #fff;
   opacity: 0.3;
 }
+.main {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 300px;
+  margin: -150px 0 0 0;
+  text-align: center;
+}
 
 .main .avatar {
   display: inline-block;
@@ -38,14 +45,6 @@
   background: #fff;
   border: .3rem solid #f5f5f5;
   border-radius: 50%;
-}
-
-.main {
-  min-width: 10rem;
-  position: fixed;
-  text-align: center;
-  z-index: 2;
-  padding-bottom: 15rem;
 }
 
 .main .resums {
@@ -62,21 +61,36 @@
   font-weight: 700;
   text-shadow: .2rem .2rem .3rem #000;
 }
-
 .main .links {
-  max-width: 11rem;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
+  height: 3rem;
+  line-height: 3rem;
 }
 
 .main .links a {
-  transform: scale(1);
+  position: relative;
+  color: #fff;
+  font-weight: 700;
+  text-shadow: .2rem .2rem .3rem #000;
   transition: all .2s ease-in-out;
+  padding: 0 .8rem;
+}
+
+.main .links a::after {
+  position: absolute;
+  content: '';
+  top: .15rem;
+  right: -.4rem;
+  height: 100%;
+  width: 1px;
+  background: #fff;
+}
+
+.main .links a:last-child::after {
+  display: none;
 }
 
 .main .links a:hover {
-  transform: scale(1.3);
+  color: #d8ffd2;
 }
 
 .main .links a i {
@@ -98,10 +112,6 @@
 .main .links a i.icon-resume {
   color: #24292e;
   font-size: 2.7rem;
-}
-
-.demos-wrap .demos {
-  text-align: left;
 }
 
 .demos-wrap {
