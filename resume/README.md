@@ -14,8 +14,10 @@
 - 技术博客：https://daoyi7.github.io/
 - Github: https://github.com/daoyi7
 - 期望职位：Web前端开发工程师
-- 期望薪资：税前12k~18k
 - 期望城市：杭州、上海、武汉
+- 期望薪资：
+  - 武汉 税前8k ~ 10k
+  - 杭州、上海 税前12k ~ 18k
 
 ## 工作经历
 
