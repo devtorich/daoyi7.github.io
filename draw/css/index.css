@@ -13,6 +13,7 @@ body {
 }
 
 canvas#canvas {
+  background:#000;
   background-size: cover;
 }
 
