@@ -13,7 +13,6 @@ body {
 }
 
 canvas#canvas {
-  background: #fff url(../img/1.png);
   background-size: cover;
 }
 
